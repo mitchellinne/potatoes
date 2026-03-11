@@ -1,0 +1,103 @@
+body{
+    background-color: rgb(227, 184, 74);
+}
+img {
+    text-align: center;
+    border-radius: 25%;
+}
+#gerechten{
+    float: right;
+    border-radius: 15%;
+    width: 50%;
+}
+#samengevat{
+    background-color: rgb(210, 150, 30);
+}
+a {
+    color: #614b0f;
+}
+p{
+    color: #614b0f;
+}
+h1 {
+    color: rgb(105, 77, 5);
+}
+h2 {
+    color: rgb(105, 77, 5);
+}
+h3 {
+    color: rgb(105, 77, 5);
+}
+h5 {
+    color: rgb(70, 52, 5);
+}
+@font-face {
+font-family: 'stencil';
+src: url('fonts/website voor punten/StencilPtxSprayedDemo-j9MAM.ttf') format('truetype');
+}
+#lijst-pataten{
+    font-size: small;
+    color: rgb(116, 85, 6);
+}
+#lijst-pataten-klein{
+    font-size: x-small;
+    color: rgb(116, 85, 6);
+}
+#samengevat-lijst-patatten{
+    font-size: small;
+    color: rgb(116, 85, 6);
+}
+#zwart{
+    height: 4px;
+    background-color: black;
+    border: none;
+}
+#zwart-klein{
+    height: 1px;
+    background-color: black;
+    border: none;
+}
+#pataten{
+    float: right;
+ 
+}
+#disclamer{
+    font-family: 'stencil';
+    font-size: x-small;
+    color: rgb(116, 85, 6);
+}
+#links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #ac9607;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+ul li a:hover {
+    background-color: #614b0f;
+    color:rgb(250, 250, 250);
+}
+
+h1, p{
+    margin: 20px;
+    scroll-margin-top:60px;
+}
+h2{
+    margin: 20px;
+    scroll-margin-top: 0px;
+}
