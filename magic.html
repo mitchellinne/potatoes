@@ -1,102 +1,267 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>over patatten, magic</title>
-        <link rel="icon" type="image/x-icon" href="favicon.ico">
-        <link rel="stylesheet" href="css-magic.css">
-        
-    </head>
-    <body>
-        <ul id="links" style="display: flex; align-items: center; gap: 10px; list-style: none; padding: 0; margin: 0;">
-            <li><a href="index.html">home</a></li>
-            <li><div style="width: 2px; height: 30px; background-color: rgb(87, 77, 4);"></div></li>
-            <li><a href="fotos.html">weetjes</a></li>
-            <li><div style="width: 2px; height: 30px; background-color: rgb(87, 77, 4);"></div></li>
-            <li><a href="#magic">magic</a></li>
-          </ul>
+<head>
+    <title>Over patatten, magic</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="css-magic.css">
+    <style>
+        body {
+            background: rgb(227, 184, 74);
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
 
-         <h1 id="magic">🥔 Magic Potato Game</h1>
+        #links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #ac9607;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
+        #links li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        #links li a:hover {
+            background-color: #614b0f;
+            color: rgb(250, 250, 250);
+        }
+
+        h1, h2 {
+            margin: 20px;
+        }
+
+        /* CONTAINER SPEL + REGELS */
+        #container {
+            position: relative;
+            width: 100%;
+            height: 300px; /* hoogte van de game area */
+        }
+
+        /* SPELREGELS LINKS */
+        #rules {
+            position: absolute;
+            left: 20px;
+            top: 0;
+            width: 300px;
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+        }
+
+        #rules h2 {
+            text-align: center;
+        }
+
+        #rules a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+
+        #rules a:hover {
+            text-decoration: underline;
+        }
+
+        /* GAME AREA GEFIXEERD IN HET MIDDEN */
+        #gameWrapper {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        #gameArea {
+            width: 600px;
+            height: 280px;
+            border: 3px solid white;
+            background-color: #614b0f;
+            position: relative;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        #potato {
+            font-size: 50px;
+            position: absolute;
+            cursor: pointer;
+            display: none;
+        }
+
+        .button {
+            position: fixed;
+            top: 110%;
+            right: 40%;
+            margin-top: 10px;
+            background-color: #ac9607;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #614b0f;
+        }
+
+        .info {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+
+        #gameOver {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 60px;
+            font-weight: bold;
+            background: rgba(113, 77, 27, 0.8);
+            padding: 40px;
+            border-radius: 15px;
+            display: none;
+        }
+
+        .fixed-button {
+            position: fixed;
+            right: 20px;
+            top: 55%;
+            transform: translateY(-50%);
+            background-color: #ac9607;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .fixed-button:hover {
+            background-color: #614b0f;
+        }
+    </style>
+</head>
+<body>
+
+<ul id="links">
+    <li><a href="index.html">home</a></li>
+    <li><div style="width:2px;height:30px;background-color:rgb(87,77,4);"></div></li>
+    <li><a href="fotos.html">weetjes</a></li>
+    <li><div style="width:2px;height:30px;background-color:rgb(87,77,4);"></div></li>
+    <li><a href="#magic">magic</a></li>
+</ul>
+
+<h1 id="magic">🥔 Magic Potato Game</h1>
+
+<div id="container">
+    <!-- SPELREGELS LINKS -->
+    <div id="rules">
+        <h2>🎮 Spelregels</h2>
+        <ol>
+            <li>Klik op de aardappel 🥔 zo snel mogelijk.</li>
+            <li>Elke klik geeft 1 punt.</li>
+            <li>Je hebt 30 seconden om zoveel mogelijk aardappels te vangen.</li>
+            <li>Het spel eindigt als de tijd op is.</li>
+            <li>Probeer je highscore te verslaan!</li>
+        </ol>
+    </div>
+
+    <!-- GAME IN HET MIDDEN -->
+    <div id="gameWrapper">
+        <div id="gameArea">
+            <div id="potato">🥔</div>
+        </div>
+        <button onclick="startGame()" class="button">Start Game</button>
         <div class="info">
-            Score: <span id="score">0</span> |
-            Time: <span id="time">30</span>
+            Score: <span id="score">0</span> | Time: <span id="time">30</span>
         </div>
-
-        
-        <a href="https://youtu.be/iYMx3Z5sTSI" class="fixed-button">Klik hier</a>
-        <a class="button" onclick="startGame()">Start Game</a>
-
         <div id="gameOver"></div>
-        <div id="container">
-            <div id="rules">
-                <h2>🎮 Spelregels</h2>
-                <ol>
-                    <li>Klik op de aardappel 🥔 zo snel mogelijk.</li>
-                    <li>Elke klik geeft 1 punt.</li>
-                    <li>Je hebt 30 seconden om zoveel mogelijk aardappels te vangen.</li>
-                    <li>Het spel eindigt als de tijd op is.</li>
-                    <li>Probeer je highscore te verslaan!</li>
-                </ol>
-            </div>
-        
-        </div>
-        <div id="gameWrapper">
-            <div id="gameArea">
-                <div id="potato">🥔</div>
-            </div>
-            <button onclick="startGame()" class="button">Start Game</button>
-            <div>Score: <span id="score">0</span> | Time: <span id="time">30</span></div>
-            <div id="gameOver"></div>
-        </div>
-        
-        <script>
-        let score = 0;
-        let timeLeft = 30;
-        let gameRunning = false;
-        let potato = document.getElementById("potato");
-        let gameArea = document.getElementById("gameArea");
-        
-        potato.addEventListener("click", catchPotato);
-        
-        function startGame() {
-            score = 0;
-            timeLeft = 30;
-            gameRunning = true;
-            document.getElementById("score").innerText = score;
-            document.getElementById("time").innerText = timeLeft;
-            document.getElementById("gameOver").innerText = "";
-            potato.style.display = "block";
-            movePotato();
-        
-            let timer = setInterval(() => {
-                timeLeft--;
-                document.getElementById("time").innerText = timeLeft;
-        
-                if (timeLeft <= 0) {
-                    clearInterval(timer);
-                    gameRunning = false;
-                    potato.style.display = "none";
-                    document.getElementById("gameOver").innerText = "GAME OVER! Score: " + score;
-                }
-            }, 1000);
+    </div>
+</div>
+
+<a href="https://youtu.be/iYMx3Z5sTSI" class="fixed-button">Klik hier</a>
+
+<script>
+let score = 0;
+let timeLeft = 30;
+let gameRunning = false;
+
+const potato = document.getElementById("potato");
+const gameArea = document.getElementById("gameArea");
+const scoreEl = document.getElementById("score");
+const timeEl = document.getElementById("time");
+const gameOverEl = document.getElementById("gameOver");
+
+potato.addEventListener("click", catchPotato);
+
+function startGame() {
+    score = 0;
+    timeLeft = 30;
+    gameRunning = true;
+
+    scoreEl.innerText = score;
+    timeEl.innerText = timeLeft;
+    gameOverEl.style.display = "none";
+    gameOverEl.innerText = "";
+
+    potato.style.display = "block";
+    movePotato();
+
+    const timer = setInterval(() => {
+        if (!gameRunning) {
+            clearInterval(timer);
+            return;
         }
-        
-        function catchPotato() {
-            if (!gameRunning) return;
-            score++;
-            document.getElementById("score").innerText = score;
-            movePotato();
+
+        timeLeft--;
+        timeEl.innerText = timeLeft;
+
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            gameRunning = false;
+            potato.style.display = "none";
+            gameOverEl.innerText = "GAME OVER! Score: " + score;
+            gameOverEl.style.display = "block";
         }
-        
-        function movePotato() {
-            let maxX = gameArea.clientWidth - potato.offsetWidth;
-            let maxY = gameArea.clientHeight - potato.offsetHeight;
-        
-            let x = Math.random() * maxX;
-            let y = Math.random() * maxY;
-        
-            potato.style.left = x + "px";
-            potato.style.top = y + "px";
-        }
-        </script>
-    </body>
+    }, 1000);
+}
+
+function catchPotato() {
+    if (!gameRunning) return;
+
+    score++;
+    scoreEl.innerText = score;
+
+    movePotato();
+}
+
+function movePotato() {
+    const maxX = gameArea.clientWidth - potato.offsetWidth;
+    const maxY = gameArea.clientHeight - potato.offsetHeight;
+
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+
+    potato.style.left = x + "px";
+    potato.style.top = y + "px";
+}
+</script>
+
+</body>
 </html>
