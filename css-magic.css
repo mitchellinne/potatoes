@@ -1,18 +1,19 @@
+/* NAVBAR */
 #links {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
+    list-style: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
     background-color: #ac9607;
-    position:sticky;
-    top:0;
-    z-index:1000;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-ul li a {
+#links li a {
     display: block;
     color: white;
     text-align: center;
@@ -20,19 +21,24 @@ ul li a {
     text-decoration: none;
 }
 
-ul li a:hover {
+#links li a:hover {
     background-color: #614b0f;
-    color:rgb(250, 250, 250);
+    color: rgb(250, 250, 250);
 }
 
-h1, p{
+/* TITELS EN TEKST */
+h1, p, h2 {
     margin: 20px;
-    scroll-margin-top:60px;
+    scroll-margin-top: 60px;
+    color: white;
+    font-family: Arial, sans-serif;
 }
-h2{
-    margin: 20px;
-    scroll-margin-top: 0px;
+
+#rules h2 {
+    text-align: center;
 }
+
+/* BUTTONS */
 .fixed-button {
     position: fixed;
     right: 20px;      
@@ -43,17 +49,15 @@ h2{
     padding: 12px 20px;
     border: none;
     border-radius: 5px;
-    text-decoration: none;
     font-size: 16px;
     cursor: pointer;
+    text-decoration: none;
 }
 
-.fixed-button:hover {
-    background-color: #614b0f;
-}
+.fixed-button:hover { background-color: #614b0f; }
+
 .button {
     position: fixed;
-
     right: 45%;      
     top: 90%;
     transform: translateY(-50%);
@@ -62,45 +66,49 @@ h2{
     padding: 12px 20px;
     border: none;
     border-radius: 5px;
-    text-decoration: none;
     font-size: 16px;
     cursor: pointer;
 }
 
-.button:hover {
-    background-color: #614b0f;
-}
-#container{
-    position: fixed;
-    left: -37%;      
-    top: 0%;
+.button:hover { background-color: #614b0f; }
+
+/* CONTAINER */
+#container {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    gap: 40px; /* ruimte tussen regels en spel */
+    gap: 40px;
     margin-top: 20px;
-    position: relative;
 }
 
+/* RULES */
 #rules {
     width: 300px;
     background: rgba(255,255,255,0.1);
     padding: 20px;
     border-radius: 10px;
     color: white;
-    font-family: Arial, sans-serif;
 }
 
+#rules a {
+    color: #ffd700;
+    text-decoration: none;
+}
+
+#rules a:hover { text-decoration: underline; }
+
+/* GAME AREA */
 #gameArea {
     width: 600px;
     height: 280px;
     border: 3px solid white;
-    margin: 20px auto;
-    position: relative; /* absoluut noodzakelijk voor de aardappel */
     background-color: #614b0f;
+    position: relative; /* absoluut noodzakelijk voor de aardappel */
+    margin: 40px auto;
     overflow: hidden;
 }
 
+/* POTATO */
 #potato {
     font-size: 50px;
     position: absolute;
@@ -108,74 +116,24 @@ h2{
     display: none;
 }
 
-#rules h2{
-    text-align:center;
-}
-
-#rules a{
-    color:#ffd700;
-    text-decoration:none;
-}
-
-#rules a:hover{
-    text-decoration:underline;
-}
-
-body{
-    background:rgb(227, 184, 74);
-    color:white;
-    text-align:center;
-    font-family:Arial;
-}
-
-#gameOver{
-    position:fixed;
-    top:50%;
-    left:50.5%;
-    transform:translate(-50%, -50%);
-    
-    font-size:60px;
-    font-weight:bold;
-    
-    background:rgba(113, 77, 27, 0.8);
-    padding:40px;
-    border-radius:15px;
-    
-    display:none;
-}
-
-#gameArea{
-    width: 600px;
-    height: 280px;
-    border: 3px solid white;
+/* GAME OVER */
+#gameOver {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    overflow: hidden;
-    background-color: #614b0f;
-    margin: 0; /* margin niet nodig bij fixed en transform */
+    font-size: 60px;
+    font-weight: bold;
+    background: rgba(113, 77, 27, 0.8);
+    padding: 40px;
+    border-radius: 15px;
+    display: none;
 }
 
-#potato{
-    font-size:50px;
-    position:absolute;
-    cursor:pointer;
-    display:none;
-}
-
-button{
-    padding:10px 20px;
-    font-size:18px;
-    cursor:pointer;
-}
-
-#knop {
-    background-color: #ac9607;
+/* BODY */
+body {
+    background: rgb(227, 184, 74);
     color: white;
-    text-decoration: none;
-}
-  
-#knop:hover {
-    background-color: #614b0f;
+    text-align: center;
+    font-family: Arial, sans-serif;
 }
